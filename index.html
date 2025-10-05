@@ -2,163 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ZAMA Quest Live</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZAMA Quest Live 2</title>
   <style>
     body {
-      font-family: "Poppins", Arial, sans-serif;
-      margin: 0;
-      background: radial-gradient(circle at top left, #0b1220, #000);
+      background: #0b1220;
       color: #e6f0ff;
+      font-family: Arial, sans-serif;
       text-align: center;
-      overflow: hidden;
+      margin: 0;
+      padding: 50px;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
-
     h1 {
-      font-size: 2.8rem;
-      background: linear-gradient(90deg, #22d3ee, #a78bfa, #22d3ee);
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #22d3ee, #a78bfa);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: glow 3s ease-in-out infinite alternate;
     }
-
     @keyframes glow {
       from { text-shadow: 0 0 8px #22d3ee, 0 0 15px #a78bfa; }
       to { text-shadow: 0 0 20px #a78bfa, 0 0 30px #22d3ee; }
     }
-
-    .dashboard {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 30px 50px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 0 25px #22d3ee40;
-      animation: fadeIn 1.5s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
     .counter {
+      margin-top: 30px;
       font-size: 3rem;
-      font-weight: 700;
       color: #22d3ee;
-      text-shadow: 0 0 12px #a78bfa;
     }
-
-    .progress {
-      width: 300px;
-      height: 20px;
-      background: #1e293b;
-      border-radius: 10px;
-      margin: 20px auto;
-      overflow: hidden;
-      box-shadow: 0 0 10px #22d3ee60;
-    }
-
-    .bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #22d3ee, #a78bfa);
-      box-shadow: 0 0 15px #a78bfa80;
-      transition: width 1s ease-in-out;
-    }
-
     button {
       margin-top: 20px;
-      padding: 10px 25px;
+      padding: 10px 20px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       background: linear-gradient(90deg, #22d3ee, #a78bfa);
-      font-weight: 600;
       color: #000;
       cursor: pointer;
-      font-size: 1rem;
-      box-shadow: 0 0 15px #22d3ee70;
-      transition: all 0.3s ease;
+      font-weight: bold;
+      box-shadow: 0 0 10px #22d3ee;
     }
-
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #a78bfa;
-    }
-
     footer {
-      position: fixed;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-      color: #94a3b8;
+      margin-top: 50px;
       font-size: 0.9rem;
-      text-shadow: 0 0 4px #22d3ee;
-    }
-
-    .dot {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.4;
-      animation: floatDots 18s linear infinite;
-    }
-
-    @keyframes floatDots {
-      0% { transform: translateY(0) scale(1); opacity: 0.4; }
-      50% { opacity: 0.8; }
-      100% { transform: translateY(-120vh) scale(0.5); opacity: 0; }
+      color: #94a3b8;
     }
   </style>
 </head>
 <body>
-  <div id="bg"></div>
-  <h1>🔥 ZAMA Quest Live 🔥</h1>
-
-  <div class="dashboard">
-    <div class="counter" id="count">0</div>
-    <p>Participants Joined</p>
-
-    <div class="progress">
-      <div class="bar" id="bar"></div>
-    </div>
-
-    <button id="add">Join Quest</button>
-  </div>
-
-  <footer>✨ Built by <span style="color:#22d3ee;">CryptoKing4535</span> — AlphaKing Labs 💫</footer>
+  <h1>🔥 ZAMA Quest Live 2 🔥</h1>
+  <div class="counter" id="count">0</div>
+  <button id="btn">Join Quest</button>
+  <footer>Built by CryptoKing4535</footer>
 
   <script>
     let count = 0;
-    const counter = document.getElementById("count");
-    const bar = document.getElementById("bar");
-    const btn = document.getElementById("add");
-
-    btn.addEventListener("click", () => {
+    document.getElementById('btn').addEventListener('click', () => {
       count++;
-      if (count > 100) count = 0;
-      counter.textContent = count;
-      const progress = Math.min(count, 100);
-      bar.style.width = progress + "%";
+      document.getElementById('count').textContent = count;
     });
-
-    const bg = document.getElementById('bg');
-    for (let i = 0; i < 25; i++) {
-      const dot = document.createElement('div');
-      const size = Math.random() * 12 + 6;
-      dot.classList.add('dot');
-      dot.style.width = `${size}px`;
-      dot.style.height = `${size}px`;
-      dot.style.left = `${Math.random() * 100}%`;
-      dot.style.bottom = `${Math.random() * 100}px`;
-      dot.style.background = Math.random() > 0.5 ? '#22d3ee' : '#a78bfa';
-      dot.style.animationDuration = `${10 + Math.random() * 15}s`;
-      bg.appendChild(dot);
-    }
   </script>
 </body>
 </html>
